@@ -1,0 +1,278 @@
+Microsoft (R) Macro Assembler Version 6.11		    10/30/23 01:16:54
+E3P.ASM							     Page 1 - 1
+
+
+				; Define macros for calculating factorial and Fibonacci series
+				fact MACRO num
+				    mov ecx, num
+				    mov eax, 1
+				fact_loop:
+				    mul ecx
+				    loop fact_loop
+				ENDM
+
+				fib MACRO num
+				    mov ecx, num
+				    mov eax, 0
+				    mov ebx, 1
+				fib_loop:
+				    add eax, ebx
+				    mov ebx, eax
+				    sub ecx, 1
+				    jnz fib_loop
+				ENDM
+
+				section .data
+E3P.ASM(21): error A2008:  : section
+				menu db 'Menu:', 0Ah, '1. Calculate factorial', 0Ah, '2. Calculate Fibonacci series', 0Ah, '3. Exit', 0Ah, 0Ah, 'Enter your choice: '
+E3P.ASM(22): error A2034: 
+				num_prompt db 0Ah, 'Enter a number: '
+E3P.ASM(23): error A2034: 
+				result_prompt db 0Ah, 'Result: '
+E3P.ASM(24): error A2034: 
+
+				section .bss
+E3P.ASM(26): error A2008:  : section
+				num resd 1
+E3P.ASM(27): error A2008:  : num
+
+				section .text
+E3P.ASM(29): error A2008:  : section
+				global _start
+E3P.ASM(30): error A2008:  : global
+
+				_start:
+E3P.ASM(32): error A2034: 
+				    ; Display menu and prompt user for choice
+				    mov eax, 4
+E3P.ASM(34): error A2034: 
+				    mov ebx, 1
+E3P.ASM(35): error A2034: 
+				    mov ecx, menu
+E3P.ASM(36): error A2034: 
+				    mov edx, 28
+E3P.ASM(37): error A2034: 
+				    int 80h
+E3P.ASM(38): error A2034: 
+
+				    mov eax, 3
+E3P.ASM(40): error A2034: 
+				    mov ebx, 2
+E3P.ASM(41): error A2034: 
+				    mov ecx, num
+E3P.ASM(42): error A2034: 
+				    mov edx, 4
+E3P.ASM(43): error A2034: 
+
+				menu_loop:
+E3P.ASM(45): error A2034: 
+				    ; Prompt user for choice
+				    mov eax, 4
+E3P.ASM(47): error A2034: 
+				    mov ebx, 1
+E3P.ASM(48): error A2034: 
+				    mov ecx, menu
+E3P.ASM(49): error A2034: 
+				    mov edx, 28
+E3P.ASM(50): error A2034: 
+				    int 80h
+E3P.ASM(51): error A2034: 
+
+				    mov eax, 3
+E3P.ASM(53): error A2034: 
+				    mov ebx, 0
+E3P.ASM(54): error A2034: 
+				    mov ecx, num
+E3P.ASM(55): error A2034: 
+				    mov edx, 4
+E3P.ASM(56): error A2034: 
+				    int 80h
+E3P.ASM(57): error A2034: 
+
+				    ; Calculate factorial
+				    cmp dword [num], 1
+E3P.ASM(60): error A2034: 
+				    jle fib_choice
+E3P.ASM(61): error A2034: 
+
+				    mov eax, 4
+E3P.ASM(63): error A2034: 
+				    mov ebx, 1
+E3P.ASM(64): error A2034: 
+				    mov ecx, num_prompt
+E3P.ASM(65): error A2034: 
+				    mov edx, 16
+E3P.ASM(66): error A2034: 
+				    int 80h
+E3P.ASM(67): error A2034: 
+
+				    mov eax, 3
+E3P.ASM(69): error A2034: 
+				    mov ebx, 0
+E3P.ASM(70): error A2034: 
+				    mov ecx, num
+E3P.ASM(71): error A2034: 
+				    mov edx, 4
+E3P.ASM(72): error A2034: 
+				    int 80h
+E3P.ASM(73): error A2034: 
+
+				    fact dword [num]
+			     1	    mov ecx, dword
+E3P.ASM(75): error A2034: 
+ fact(1): Macro Called From
+  E3P.ASM(75): Main Line Code
+			     1	    mov eax, 1
+E3P.ASM(75): error A2034: 
+ fact(2): Macro Called From
+  E3P.ASM(75): Main Line Code
+			     1	fact_loop:
+E3P.ASM(75): error A2034: 
+ fact(3): Macro Called From
+  E3P.ASM(75): Main Line Code
+			     1	    mul ecx
+E3P.ASM(75): error A2034: 
+ fact(4): Macro Called From
+  E3P.ASM(75): Main Line Code
+			     1	    loop fact_loop
+E3P.ASM(75): error A2034: 
+ fact(5): Macro Called From
+  E3P.ASM(75): Main Line Code
+
+				    mov eax, 4
+E3P.ASM(77): error A2034: 
+				    mov ebx, 1
+E3P.ASM(78): error A2034: 
+				    mov ecx, result_prompt
+E3P.ASM(79): error A2034: 
+				    mov edx, 9
+E3P.ASM(80): error A2034: 
+				    int 80h
+E3P.ASM(81): error A2034: 
+
+				    mov eax, 1
+E3P.ASM(83): error A2034: 
+				    mov ebx, 0
+E3P.ASM(84): error A2034: 
+				    mov ecx, num
+E3P.ASM(85): error A2034: 
+				    mov edx, 4
+E3P.ASM(86): error A2034: 
+				    int 80h
+E3P.ASM(87): error A2034: 
+
+				    jmp menu_loop
+E3P.ASM(89): error A2034: 
+
+				    ; Calculate Fibonacci series
+				fib_choice:
+E3P.ASM(92): error A2034: 
+				    cmp dword [num], 1
+E3P.ASM(93): error A2034: 
+				    jl exit
+E3P.ASM(94): error A2034: 
+
+				    mov eax, 4
+E3P.ASM(96): error A2034: 
+				    mov ebx, 1
+E3P.ASM(97): error A2034: 
+				    mov ecx, num_prompt
+E3P.ASM(98): error A2034: 
+				    mov edx, 16
+E3P.ASM(99): error A2034: 
+				    int 80h
+E3P.ASM(100): error A2034: 
+
+				    mov eax, 3
+E3P.ASM(102): error A2034: 
+				    mov ebx, 0
+E3P.ASM(103): error A2034: 
+				    mov ecx, num
+E3P.ASM(104): error A2034: 
+				    mov edx, 4
+E3P.ASM(105): error A2034: 
+				    int 80h
+E3P.ASM(106): error A2034: 
+
+				    fib dword [num]
+			     1	    mov ecx, dword
+E3P.ASM(108): error A2034: 
+ fib(1): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	    mov eax, 0
+E3P.ASM(108): error A2034: 
+ fib(2): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	    mov ebx, 1
+E3P.ASM(108): error A2034: 
+ fib(3): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	fib_loop:
+E3P.ASM(108): error A2034: 
+ fib(4): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	    add eax, ebx
+E3P.ASM(108): error A2034: 
+ fib(5): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	    mov ebx, eax
+E3P.ASM(108): error A2034: 
+ fib(6): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	    sub ecx, 1
+E3P.ASM(108): error A2034: 
+ fib(7): Macro Called From
+  E3P.ASM(108): Main Line Code
+			     1	    jnz fib_loop
+E3P.ASM(108): error A2034: 
+ fib(8): Macro Called From
+  E3P.ASM(108): Main Line Code
+
+				    mov eax, 4
+E3P.ASM(110): error A2034: 
+				    mov ebx, 1
+E3P.ASM(111): error A2034: 
+				    mov ecx, result_prompt
+E3P.ASM(112): error A2034: 
+				    mov edx, 9
+E3P.ASM(113): error A2034: 
+				    int 80h
+E3P.ASM(114): error A2034: 
+
+				    mov eax, 1
+E3P.ASM(116): error A2034: 
+				    mov ebx, 0
+E3P.ASM(117): error A2034: 
+				    mov ecx, num
+E3P.ASM(118): error A2034: 
+				    mov edx, 4
+E3P.ASM(119): error A2034: 
+				    int 80h
+E3P.ASM(120): error A2034: 
+
+				    jmp menu_loop
+E3P.ASM(122): error A2034: 
+
+				exit:
+E3P.ASM(124): error A2034: 
+				    ; Exit program
+				    mov eax, 1
+E3P.ASM(126): error A2034: 
+				    xor ebx, ebx
+E3P.ASM(127): error A2034: 
+				    int 80h
+Microsoft (R) Macro Assembler Version 6.11		    10/30/23 01:16:54
+E3P.ASM							     Symbols 2 - 1
+
+
+
+
+Macros:
+
+                N a m e                 Type
+
+fact . . . . . . . . . . . . . .	Proc
+fib  . . . . . . . . . . . . . .	Proc
+
+	   0 Warnings
+	   94 Errors
